@@ -1,10 +1,7 @@
 package com.example.Blog_App.users;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -13,6 +10,7 @@ import org.springframework.lang.Nullable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserEntity {
 
     @Id
