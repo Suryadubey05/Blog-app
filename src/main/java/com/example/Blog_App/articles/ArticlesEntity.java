@@ -18,7 +18,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticlesEntity {
+public class  ArticlesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
