@@ -12,17 +12,19 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 @EnableWebSecurity
 public class AppSecurityConfig {
 
-    private JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
+    private JWTAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public void securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/users", "/users/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/articles", "/articles/*").permitAll()
                         .anyRequest().authenticated()
                 );
 
         http.addFilterBefore(jwtAuthenticationFilter, AnonymousAuthenticationFilter.class);
+        return http.build();
     }
 }

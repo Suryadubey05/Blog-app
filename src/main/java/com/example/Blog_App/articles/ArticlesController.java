@@ -6,4 +6,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/articles")
 public class ArticlesController {
 
+    @GetMapping("")
+    String getArticles(){
+        return "get all articles";
+    }
+
+    @GetMapping("/{id}")
+    String getArticleById(@PathVariable("id") String id){
+        return "get article by id: "+id;
+    }
+
+    @PostMapping("")
+    String createArticles(){
+        return "create article";
+    }
 }

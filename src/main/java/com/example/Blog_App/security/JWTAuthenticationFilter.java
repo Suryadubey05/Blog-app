@@ -1,10 +1,17 @@
 package com.example.Blog_App.security;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationFilter;
 
 public class JWTAuthenticationFilter extends AuthenticationFilter {
+    private JWTAuthenticationManager jwtAuthenticationManager;
 
-    public JWTAuthenticationFilter() {
-        super(new JWTAuthenticationManager(), new JWTAuthenticationConverter());
+    public JWTAuthenticationFilter(JWTAuthenticationManager jwtAuthenticationManager) {
+        super(jwtAuthenticationManager, new JWTAuthenticationConverter());
+
+        this.setSuccessHandler(((request, response, authentication) -> {
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }));
     }
 
 }
